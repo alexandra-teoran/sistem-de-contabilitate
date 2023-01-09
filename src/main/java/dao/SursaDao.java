@@ -7,8 +7,8 @@ import java.sql.*;
 
 public class SursaDao {
 	 public static void save(Sursa sursa){
-	        String query="insert into sursa";
-	        BDOperations.setDataOrDelete(query, "Product Added Successfully");
+	        String query="insert into sursa(nume_sursa) values('"+sursa.getNume_sursa()+"')";
+	        BDOperations.setDataOrDelete(query, "Sursa adaugata cu succes!");
 	    }
 	    
 	    public static ArrayList<Sursa> getAllRecords(){
@@ -17,9 +17,8 @@ public class SursaDao {
 	            ResultSet rs=BDOperations.getData("select * from sursa");
 	            while(rs.next()){
 	                Sursa sursa=new Sursa();
-	                /*sursa.setId(rs.getInt("id"));
-	                sursa.setName(rs.getString("category"));
-	                sursa.setPrice(rs.getString("price"));*/
+	                sursa.setId_sursa(rs.getInt("id_sursa"));;
+	                sursa.setNume_sursa(rs.getString("nume_categorie"));;
 	                arrayList.add(sursa);
 	            }
 	        }
@@ -31,7 +30,7 @@ public class SursaDao {
 	    
 	    
 	    public static void delete(String id){
-	         String query="delete from product where id=";
-	         BDOperations.setDataOrDelete(query, "Product Deleted Successfully");
+	         String query="delete from product where id_sursa='"+id+"'";
+	         BDOperations.setDataOrDelete(query, "Sursa stearsa cu succes!");
 	    }
 }

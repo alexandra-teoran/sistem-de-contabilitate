@@ -5,12 +5,12 @@ import javax.swing.JOptionPane;
 public class Tables {
 	public static void main(String[] args) {
         try{
-            String tabelIntrare="create table intrare(id int AUTO_INCREMENT primary key, nume varchar(200), email varchar(200), nrTelefon varchar(10), adresa varchar(200), parola varchar(200), intrebareDeSecuritate varchar(200), raspunsIntrebareSecuritate varchar(200), status varchar(20), UNIQUE (email))";
-            String tabelCategorie="create table categorie(id int AUTO_INCREMENT primary key, name varchar(200))";
-            String tabelSursa="create table sursa(id int AUTO_INCREMENT primary key, name varchar(200), category varchar(200), price varchar(200))";
-            BDOperations.setDataOrDelete(tabelIntrare, "User Table Created Successfully");
-            BDOperations.setDataOrDelete(tabelCategorie, "Category Table Created Successfully");
-            BDOperations.setDataOrDelete(tabelSursa, "Product Table Created Successfully");
+            String tabelCategorie="create table categorie(id_categorie int AUTO_INCREMENT primary key, nume_categorie varchar(200))";
+            String tabelSursa="create table sursa(id_sursa int AUTO_INCREMENT primary key, nume_sursa varchar(200))";
+            String tabelIntrare="create table intrare(id_intrare int AUTO_INCREMENT primary key, tip_intrare varchar(200), id_sursa int, data date, id_categorie int, suma int, foreign key id_sursa_fk (id_sursa) references sursa(id_sursa), foreign key id_categorie_fk (id_categorie) references categorie(id_categorie))";
+            BDOperations.setDataOrDelete(tabelIntrare, "Tabelul Intrare A Fost Creat Cu Succes");
+            BDOperations.setDataOrDelete(tabelCategorie, "Tabelul Categorie A Fost Creat Cu Succes");
+            BDOperations.setDataOrDelete(tabelSursa, "Tabelul Sursa A Fost Creat Cu Succes");
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, e);

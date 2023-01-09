@@ -6,7 +6,7 @@ import java.sql.*;
 
 public class IntrareDao {
 	 public static void save(Intrare intrare){
-	        String query="insert into intrare"; 
-	        BDOperations.setDataOrDelete(query, "Registered Successfully! Wait for Admin Approval!");
+	        String query="insert into intrare(tip_intrare, data, suma) values('"+intrare.getTip_intrare()+"', '"+intrare.getData()+"', '"+intrare.getSuma()+"')"; 
+	        BDOperations.setDataOrDelete(query, "Intrare adaugata cu succes!");
 	    }
 }
