@@ -39,8 +39,6 @@ public class VizualizareIntrari extends JFrame {
 			public void run() {
 				try {
 					VizualizareIntrari frame = new VizualizareIntrari();
-					frame.setLocationRelativeTo(null);
-					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -119,5 +117,8 @@ public class VizualizareIntrari extends JFrame {
 		});
 		btn_back.setBounds(495, 231, 85, 21);
 		contentPane.add(btn_back);
+		setLocationRelativeTo(null);
+		getContentPane().setBackground(new Color(153, 51, 255));
+		setVisible(true);
 	}
 }

@@ -23,6 +23,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JTable;
+import java.awt.Font;
 
 public class Cautare extends JFrame {
 
@@ -38,8 +39,6 @@ public class Cautare extends JFrame {
 			public void run() {
 				try {
 					Cautare frame = new Cautare();
-					frame.setLocationRelativeTo(null);
-					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -73,6 +72,7 @@ public class Cautare extends JFrame {
 		contentPane.add(btn_back);
 		
 		JLabel lb_categorieCautare = new JLabel("Coloana dupa care se face cautarea:");
+		lb_categorieCautare.setForeground(new Color(255, 255, 255));
 		lb_categorieCautare.setBounds(30, 39, 211, 13);
 		contentPane.add(lb_categorieCautare);
 		
@@ -91,10 +91,12 @@ public class Cautare extends JFrame {
         });
 		
 		JLabel lb_cuvant = new JLabel("Cuvant cheie:");
+		lb_cuvant.setForeground(new Color(255, 255, 255));
 		lb_cuvant.setBounds(30, 68, 93, 13);
 		contentPane.add(lb_cuvant);
 		
 		tf_cuvant = new JTextField();
+		tf_cuvant.setFont(new Font("Tahoma", Font.BOLD, 10));
 		tf_cuvant.setBounds(251, 65, 159, 19);
 		contentPane.add(tf_cuvant);
 		tf_cuvant.setColumns(10);
@@ -142,5 +144,8 @@ public class Cautare extends JFrame {
 				contentPane.add(scrollPane, BorderLayout.CENTER);
 			}
 		});
+		setLocationRelativeTo(null);
+		getContentPane().setBackground(new Color(153, 51, 255));
+		setVisible(true);
 	}
 }

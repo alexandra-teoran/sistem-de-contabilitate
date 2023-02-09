@@ -37,8 +37,6 @@ public class VizualizareGrafic extends JFrame {
 			public void run() {
 				try {
 					VizualizareGrafic frame = new VizualizareGrafic();
-					frame.setLocationRelativeTo(null);
-					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -81,11 +79,16 @@ public class VizualizareGrafic extends JFrame {
 		barChartData.setValue(list.get(1), "Suma", "Cheltuieli");
 		JFreeChart barChart=ChartFactory.createBarChart("", "Tip intrare", "Suma", barChartData, PlotOrientation.VERTICAL, false, true, false);
 		CategoryPlot barchrt=barChart.getCategoryPlot();
-		barchrt.setRangeGridlinePaint(Color.blue);
+		barchrt.setRangeGridlinePaint(Color.black);
+		barchrt.getRenderer().setSeriesPaint(0, new Color(255,215,0));
+		barchrt.getRenderer().setSeriesPaint(1, new Color(255,215,0));
 		ChartPanel barPanel=new ChartPanel(barChart);
 		chartPanel.removeAll();
 		chartPanel.setLayout(new BorderLayout(0, 0));
 		chartPanel.add(barPanel, BorderLayout.CENTER);
 		chartPanel.validate();
+		setLocationRelativeTo(null);
+		getContentPane().setBackground(new Color(153, 51, 255));
+		setVisible(true);
 	}
 }

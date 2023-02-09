@@ -1,5 +1,6 @@
 package sistem_contabilitate;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,8 +27,6 @@ public class VizualizareSold extends JFrame {
 			public void run() {
 				try {
 					VizualizareSold frame = new VizualizareSold();
-					frame.setLocationRelativeTo(null);
-					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -61,14 +60,19 @@ public class VizualizareSold extends JFrame {
 		contentPane.add(btn_back);
 		
 		JLabel lblNewLabel = new JLabel("Soldul curent este:");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel.setBounds(22, 68, 146, 13);
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNewLabel.setBounds(22, 68, 176, 13);
 		contentPane.add(lblNewLabel);
 		
 		JLabel txt_sold = new JLabel("00");
-		txt_sold.setFont(new Font("Tahoma", Font.BOLD, 14));
-		txt_sold.setBounds(210, 68, 45, 13);
+		txt_sold.setForeground(new Color(255, 255, 255));
+		txt_sold.setFont(new Font("Tahoma", Font.BOLD, 18));
+		txt_sold.setBounds(220, 68, 57, 13);
 		contentPane.add(txt_sold);
 		txt_sold.setText(String.valueOf(IntrareDao.getSold()));
+		setLocationRelativeTo(null);
+		getContentPane().setBackground(new Color(153, 51, 255));
+		setVisible(true);
 	}
 }

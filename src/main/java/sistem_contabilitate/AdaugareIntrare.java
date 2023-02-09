@@ -23,6 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.Font;
 
 public class AdaugareIntrare extends JFrame {
 
@@ -39,8 +40,6 @@ public class AdaugareIntrare extends JFrame {
 			public void run() {
 				try {
 					AdaugareIntrare frame = new AdaugareIntrare();
-					frame.setLocationRelativeTo(null);
-					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -62,6 +61,7 @@ public class AdaugareIntrare extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lb_tipIntrare = new JLabel("Tip intrare:");
+		lb_tipIntrare.setForeground(new Color(255, 255, 255));
 		lb_tipIntrare.setBounds(23, 27, 81, 13);
 		contentPane.add(lb_tipIntrare);
 		
@@ -77,28 +77,34 @@ public class AdaugareIntrare extends JFrame {
         });
 		
 		JLabel lb_suma = new JLabel("Suma:");
+		lb_suma.setForeground(new Color(255, 255, 255));
 		lb_suma.setBounds(23, 68, 45, 13);
 		contentPane.add(lb_suma);
 		
 		tf_suma = new JTextField();
+		tf_suma.setFont(new Font("Tahoma", Font.BOLD, 10));
 		tf_suma.setBounds(111, 65, 152, 19);
 		contentPane.add(tf_suma);
 		tf_suma.setColumns(10);
 		
 		JLabel lb_sursa = new JLabel("Sursa:");
+		lb_sursa.setForeground(new Color(255, 255, 255));
 		lb_sursa.setBounds(23, 106, 45, 13);
 		contentPane.add(lb_sursa);
 		
 		tf_sursa = new JTextField();
+		tf_sursa.setFont(new Font("Tahoma", Font.BOLD, 10));
 		tf_sursa.setBounds(111, 103, 152, 19);
 		contentPane.add(tf_sursa);
 		tf_sursa.setColumns(10);
 		
 		JLabel lb_categorie = new JLabel("Categorie:");
+		lb_categorie.setForeground(new Color(255, 255, 255));
 		lb_categorie.setBounds(23, 141, 81, 13);
 		contentPane.add(lb_categorie);
 		
 		tf_categorie = new JTextField();
+		tf_categorie.setFont(new Font("Tahoma", Font.BOLD, 10));
 		tf_categorie.setBounds(111, 138, 152, 19);
 		contentPane.add(tf_categorie);
 		tf_categorie.setColumns(10);
@@ -160,5 +166,8 @@ public class AdaugareIntrare extends JFrame {
 			}
 		});
 		contentPane.add(btnClear);
+		setLocationRelativeTo(null);
+		getContentPane().setBackground(new Color(153, 51, 255));
+		setVisible(true);
 	}
 }
