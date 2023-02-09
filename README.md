@@ -5,7 +5,25 @@ Teoran Alexandra-Maria
 ## Descriere
 Sistemul de contabilitate ajută o persoană să își genstioneze bugetul lunar. 
 ## Arhitectura
-
+Pachete:
+- dao
+  - ConnectionProvider.java
+  - BDOperations.java
+  - Tables.java   
+  - IntrareDao.java
+  - SursaDao.java
+  - CategorieDao.java
+- model
+  - Categorie.java
+  - Intrare.java
+  - Sursa.java
+- sistem_contabilitate
+  - AdaugareIntrare.java
+  - Cautare.java
+  - Home.java
+  - VizualizareGrafic.java
+  - VizualizareIntrari.java
+  - VizualizareSold.java
 ## Obiective/Functionalitati
 Utilizatorul poate să:
 - adauge informații cu privire la veniturile primite și cheltuielile efectuate
