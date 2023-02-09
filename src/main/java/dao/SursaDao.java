@@ -17,8 +17,8 @@ public class SursaDao {
 	            ResultSet rs=BDOperations.getData("select * from sursa");
 	            while(rs.next()){
 	                Sursa sursa=new Sursa();
-	                sursa.setId_sursa(rs.getInt("id_sursa"));;
-	                sursa.setNume_sursa(rs.getString("nume_categorie"));;
+	                sursa.setId_sursa(rs.getInt(1));;
+	                sursa.setNume_sursa(rs.getString(2));
 	                arrayList.add(sursa);
 	            }
 	        }
@@ -28,9 +28,21 @@ public class SursaDao {
 	        return arrayList;
 	    }
 	    
-	    
 	    public static void delete(String id){
 	         String query="delete from product where id_sursa='"+id+"'";
-	         BDOperations.setDataOrDelete(query, "Sursa stearsa cu succes!");
+	         BDOperations.setDataOrDelete(query, "");
+	    }
+	    
+	    public static int idSursa(String nume) {
+	    	int id=0;
+	    	try {
+	    		ResultSet rs=BDOperations.getData("select id_sursa from sursa where nume_sursa='"+nume+"'");
+	    		if(rs.next())
+	    			id=rs.getInt(1);
+	    	}
+	    	catch(Exception e) {
+	    		JOptionPane.showMessageDialog(null, e);
+	    	}
+	    	return id;
 	    }
 }

@@ -20,6 +20,8 @@ public class Home extends JFrame {
 			public void run() {
 				try {
 					Home frame = new Home();
+					frame.setLocationRelativeTo(null);
+					frame.getContentPane().setBackground(Color.yellow);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -33,6 +35,7 @@ public class Home extends JFrame {
 	 */
 	public Home() {
 		super("Sistem de contabilitate");
+		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 688, 344);
 		contentPane = new JPanel();

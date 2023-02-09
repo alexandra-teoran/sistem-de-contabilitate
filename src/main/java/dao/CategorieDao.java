@@ -8,7 +8,7 @@ import java.sql.*;
 public class CategorieDao {
 	public static void save(Categorie categorie) {
         String query="insert into categorie(nume_categorie) values('"+categorie.getNume_categorie()+"')";
-        BDOperations.setDataOrDelete(query, "Categorie adaugata cu succes!");
+        BDOperations.setDataOrDelete(query, "");
     }
     public static ArrayList<Categorie> getAllRecords(){
         ArrayList<Categorie> arrayList=new ArrayList<Categorie>();
@@ -16,8 +16,8 @@ public class CategorieDao {
             ResultSet rs=BDOperations.getData("select * from categorie");
             while(rs.next()){
                 Categorie categorie=new Categorie();
-                categorie.setId_categorie(rs.getInt("id_categorie"));
-                categorie.setNume_categorie(rs.getString("nume_categorie"));
+                categorie.setId_categorie(rs.getInt(1));
+                categorie.setNume_categorie(rs.getString(2));
                 arrayList.add(categorie);
             }
         }
@@ -28,6 +28,18 @@ public class CategorieDao {
     }
     public static void delete(String id){
         String query="delete from categorie where id_categorie='"+id+"'";
-        BDOperations.setDataOrDelete(query, "Categorie adaugata cu succes!");
+        BDOperations.setDataOrDelete(query, "");
+    }
+    public static int idCategorie(String nume) {
+    	int id=0;
+    	try {
+    		ResultSet rs=BDOperations.getData("select id_categorie from categorie where nume_categorie='"+nume+"'");
+    		if(rs.next())
+    			id=rs.getInt(1);
+    	}
+    	catch(Exception e) {
+    		JOptionPane.showMessageDialog(null, e);
+    	}
+    	return id;
     }
 }

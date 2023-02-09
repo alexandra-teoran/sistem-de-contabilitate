@@ -1,14 +1,25 @@
 package sistem_contabilitate;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import dao.IntrareDao;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JTable;
@@ -27,6 +38,7 @@ public class Cautare extends JFrame {
 			public void run() {
 				try {
 					Cautare frame = new Cautare();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -64,9 +76,19 @@ public class Cautare extends JFrame {
 		lb_categorieCautare.setBounds(30, 39, 211, 13);
 		contentPane.add(lb_categorieCautare);
 		
-		JComboBox cb_categorieCautare = new JComboBox();
+		final JComboBox cb_categorieCautare = new JComboBox();
 		cb_categorieCautare.setBounds(251, 35, 159, 21);
 		contentPane.add(cb_categorieCautare);
+		
+		addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+            	cb_categorieCautare.addItem("tip_intrare");
+            	cb_categorieCautare.addItem("nume_sursa");
+            	cb_categorieCautare.addItem("data");
+            	cb_categorieCautare.addItem("nume_categorie");
+            	cb_categorieCautare.addItem("suma");
+            }
+        });
 		
 		JLabel lb_cuvant = new JLabel("Cuvant cheie:");
 		lb_cuvant.setBounds(30, 68, 93, 13);
@@ -81,9 +103,44 @@ public class Cautare extends JFrame {
 		btn_search.setBounds(480, 64, 85, 21);
 		contentPane.add(btn_search);
 		
-		table = new JTable();
-		table.setBounds(328, 191, -169, -44);
-		contentPane.add(table);
+		JButton btnClear = new JButton("Clear");
+		btnClear.setBounds(480, 95, 85, 21);
+		btnClear.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				setVisible(false);
+				new Cautare().setVisible(true);
+			}
+		});
+		contentPane.add(btnClear);
+		
+		btn_search.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String cuvant=tf_cuvant.getText();
+				String categorie=cb_categorieCautare.getSelectedItem().toString();
+				ArrayList<String[]> list=new ArrayList<String[]>();
+				if(!categorie.equals("nume_categorie") && !categorie.equals("nume_sursa"))
+					list=IntrareDao.getIntrariByIntrare(categorie, cuvant);
+				if(categorie.equals("nume_categorie"))
+					list=IntrareDao.getIntrariByCategorie(cuvant);
+				if(categorie.equals("nume_sursa"))
+					list=IntrareDao.getIntrariBySursa(cuvant);
+				
+				DefaultTableModel dtm=new DefaultTableModel(new String[] {"Id intrare", "Tip intrare", "Suma", "Nume sursa", "Nume categorie", "Data"}, 0);
+				for(String[] s : list)
+					dtm.addRow(s);
+				table = new JTable(dtm);
+				table.setBounds(30, 50, 550, 150);
+				table.setFont(new java.awt.Font("Segoe UI", 1, 14));
+				table.getColumnModel().getColumn(4).setPreferredWidth(100);
+				table.setVisible(true);
+				JScrollPane scrollPane=new JScrollPane(table);
+				scrollPane.setBounds(30, 150, 550, 150);
+				contentPane.add(scrollPane, BorderLayout.CENTER);
+			}
+		});
 	}
-
 }

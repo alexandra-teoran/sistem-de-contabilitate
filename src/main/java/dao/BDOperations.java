@@ -4,13 +4,13 @@ import javax.swing.JOptionPane;
 import java.sql.*;
 
 public class BDOperations {
-	public static void setDataOrDelete(String Query, String msg) {
+	public static void setDataOrDelete(String query, String msg) {
         try{
             Connection con=ConnectionProvider.getCon();
             Statement st=con.createStatement();
-            st.executeUpdate(Query);
+            st.executeUpdate(query);
             if(!msg.equals(""))
-                JOptionPane.showMessageDialog(null, msg);
+            	JOptionPane.showMessageDialog(null, msg);
         }
         catch(Exception e) {
             JOptionPane.showMessageDialog(null, e, "Message", JOptionPane.ERROR_MESSAGE);

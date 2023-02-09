@@ -1,7 +1,9 @@
 package model;
 
+
 public class Intrare {
-	String tip_intrare, data;
+	String tip_intrare;
+	String data;
 	int suma, id_intrare, id_sursa, id_categorie;
 	
 	public String getTip_intrare() {
